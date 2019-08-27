@@ -1,0 +1,1 @@
+include $(JNI_ROOT_PATH)/libyuv/Android.mk
