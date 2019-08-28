@@ -23,8 +23,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 ## 编译依赖
 #### NDK
-1. 版本：NDK-r16b
-2. NDK的版本限定主要是为了在编译libjpeg-turbo库的脚本中使用gcc编译而已，因为NDK-r17之后的版本，需要使用clang来编译so库了。
+1. 因为NDK-r17之后的版本，不支持gcc编译so，需要使用clang来编译so库了。因此编译时，需要确定好自己的NDK版本。
 
 #### CMAKE, NASM, GCC等
 该部分为编译libjpeg-turbo库的编译依赖，具体可以参见libjpeg-turbo的[BUILD.md](https://github.com/libjpeg-turbo/libjpeg-turbo/blob/master/BUILDING.md)
@@ -39,7 +38,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 3. 将本仓库的libjpeg-turbo目录下的三个文件复制到libjepg-turob源码的根目录下：`cp -r libjpeg-turbo/* JPEG_SRC_ROOT_PATH/`。
 
-4. 修改config.sh中的ANDROID_NDK_ROOT为自己的NDK路径。
+4. 修改config.sh中的ANDROID_NDK_ROOT为自己的NDK路径，修改ANDROID_NDK_VERSION为对应的数字版本。例如r16b版本的ANDROID_NDK_VERSION=16。
 
 5. 运行`sh build_jpeg_all.sh`编译libjpeg-turbo，运行之后会在当前目录的libs目录下生成各种CPU架构对应的so库。
 

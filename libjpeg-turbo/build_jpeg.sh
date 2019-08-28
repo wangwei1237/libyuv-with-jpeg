@@ -17,8 +17,8 @@ PREFIX=${LIBS_DIR}/${AOSP_ABI}/
 BUILD_ROOT=build
 BUILD_DIR=${BUILD_ROOT}/${AOSP_ABI}
 
-mkdir -p ${BUILD_DIR}
-mkdir -p ${PREFIX}
+mkdir -p ${BUILD_DIR} && rm -rf ${BUILD_DIR}/*
+mkdir -p ${PREFIX} && rm -rf ${PREFIX}/*
 
 cd ${BUILD_DIR}
 

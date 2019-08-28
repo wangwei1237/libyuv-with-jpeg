@@ -1,16 +1,25 @@
 #!/bin/bash
 
-#架构
+# CPU架构
 if [ "$#" -lt 1 ]; then
 	THE_ARCH=armv7
 else
 	THE_ARCH=$(tr [A-Z] [a-z] <<< "$1")
 fi
 
-#NDK路径
-ANDROID_NDK_ROOT=/Users/wangwei/Library/Android/sdk/ndk/r16b
-TOOLCHAIN="gcc"
+# NDK路径和版本配置
+ANDROID_NDK_VERSION=20
+ANDROID_NDK_ROOT=/Users/wangwei/Library/Android/sdk/ndk/r20
+if [ ${ANDROID_NDK_VERSION} -ge 17 ]
+then
+	TOOLCHAIN="clang"
+else
+	TOOLCHAIN="gcc"
+fi
+
+# 可支持的最低Android API版本号
 AOSP_API=21
+
 AOSP_ABI=""
 AOSP_ARM_MODE=""
 AOSP_TARGET=""
@@ -48,10 +57,12 @@ case "$THE_ARCH" in
 	;;
 esac
 
-echo "------------infos------------"
-echo "AOSP_ABI="$AOSP_ABI
-echo "AOSP_ARM_MODE="$AOSP_ARM_MODE
-echo "AOSP_TARGET="$AOSP_TARGET
+echo "--------------------infos--------------------"
+echo "ANDROID_NDK_VERSION"=$ANDROID_NDK_VERSION
 echo "ANDROID_NDK_ROOT"=$ANDROID_NDK_ROOT
 echo "TOOLCHAIN"=$TOOLCHAIN
 echo "AOSP_API"=$AOSP_API
+echo "AOSP_ABI="$AOSP_ABI
+echo "AOSP_ARM_MODE="$AOSP_ARM_MODE
+echo "AOSP_TARGET="$AOSP_TARGET
+
